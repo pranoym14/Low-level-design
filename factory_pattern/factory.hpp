@@ -9,16 +9,13 @@ public:
     virtual ~Vehicle() {}
 };
 class TwoWheeler : public Vehicle {
-public:
     void printVehicleInfo();
 };
 
 class ThreeWheeler : public Vehicle {
-public:
      void printVehicleInfo();
 };
 class FourWheeler : public Vehicle {
-public:
      void printVehicleInfo();
 };
 
