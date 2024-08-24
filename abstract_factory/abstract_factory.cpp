@@ -25,21 +25,37 @@ void CS2_Course :: printCourseInfo()
 {
     cout << "CS2 course" << endl;
 }
+Course* CS_Factory :: getCsCourse()
+{
+    if (this->sr > 855)
+        return new CS1_Course();
+    else
+        return new CS2_Course();
+}
 
+Course* EC_Factory :: getEcCourse()
+{
+    if (this->sr > 755)
+        return new EC1_Course();
+    else
+        return new EC2_Course();
+}
 Course* CourseAbstractFactory:: getCourse(int score)
 {
     if(score > 850)
-        return new CS1_Course();
-    else if (score > 800)
-        return new CS2_Course();
-    else if (score > 750)
-        return new EC1_Course();
+    {
+        CS_Factory* p= new CS_Factory(score);
+        return p->getCsCourse();
+    }
     else 
-        return new EC2_Course();
+    {
+        EC_Factory* p= new EC_Factory(score);
+        return p->getEcCourse();
+    }
 }
 int main()
 {
-    Course * p=CourseAbstractFactory ::getCourse(752);
+    Course * p=CourseAbstractFactory ::getCourse(860);
     p->printCourseInfo();
     return 0;
 }
